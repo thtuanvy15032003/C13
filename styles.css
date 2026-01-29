@@ -1,0 +1,1064 @@
+/* Reset và thiết lập cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Main Menu */
+#mainMenu {
+    padding: 25px 15px;
+    min-height: 500px;
+    display: block;
+}
+
+#mainMenu.hidden {
+    display: none;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-header h1 {
+    font-size: 25px;
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.menu-header .subtitle {
+    font-size: 12px;
+    color: #666;
+}
+
+.menu-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.menu-item {
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(25, 128, 57, 0.3);
+    position: relative;
+}
+
+.menu-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(25, 128, 57, 0.4);
+}
+
+.menu-item.expandable {
+    cursor: default;
+}
+
+.menu-item.expandable:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(25, 128, 57, 0.3);
+}
+
+.menu-item.active {
+    background: linear-gradient(135deg, #198039 0%, #22a045 100%);
+}
+
+.menu-icon {
+    font-size: 20px;
+    min-width: 32px;
+    text-align: center;
+}
+
+.menu-title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.menu-arrow {
+    font-size: 14px;
+    transition: transform 0.2s ease-out;
+    display: none;
+}
+
+.menu-item.expanded .menu-arrow {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    max-height: 2000px;
+    overflow: visible;
+    transition: none;
+    margin-bottom: 10px;
+    opacity: 1;
+}
+
+.submenu-item {
+    background: #f0fdf4;
+    border-left: 4px solid #198039;
+    padding: 10px 15px;
+    margin-left: 20px;
+    margin-top: 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(0);
+}
+
+.submenu-item:hover {
+    background: #dcfce7;
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px rgba(25, 128, 57, 0.2);
+    border-left-width: 5px;
+}
+
+.submenu-icon {
+    font-size: 18px;
+    min-width: 28px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.submenu-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    flex: 1;
+}
+
+.submenu-desc {
+    font-size: 10px;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Selection Screen (legacy support) */
+#selectionScreen {
+    padding: 40px 20px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.selection-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.selection-header h1 {
+    font-size: 32px;
+    color: #198039;
+    margin-bottom: 10px;
+}
+
+.selection-header .subtitle {
+    font-size: 16px;
+    color: #666;
+}
+
+.selection-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.selection-card {
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(25, 128, 57, 0.3);
+}
+
+.selection-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(25, 128, 57, 0.4);
+}
+
+.selection-card:active {
+    transform: translateY(-2px);
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.selection-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.selection-card p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Main Form (hidden initially) */
+#mainForm {
+    display: block;
+}
+
+#mainForm.hidden {
+    display: none;
+}
+
+#selectionScreen.hidden {
+    display: none;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.btn-save-top {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: white;
+    color: #198039;
+    border: 2px solid #198039;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-save-top:hover {
+    background: #198039;
+    color: white;
+    transform: scale(1.05);
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Back button */
+.btn-back {
+    background: #f8f9fa;
+    color: #198039;
+    border: 2px solid #198039;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: #198039;
+    color: white;
+}
+
+/* Form sections */
+.form-section {
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section h2 {
+    font-size: 22px;
+    color: #198039;
+    margin-bottom: 15px;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #198039;
+}
+
+textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Table wrapper */
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Medication table */
+.med-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+}
+
+.med-table thead {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.med-table th {
+    padding: 12px 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.med-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.med-table tbody tr:hover:not(.category-header) {
+    background-color: #e8f5e9;
+    box-shadow: 0 2px 5px rgba(25, 128, 57, 0.1);
+    transform: scale(1.005);
+}
+
+.med-table tbody tr.category-header {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+    font-weight: bold;
+    color: #198039;
+    box-shadow: 0 1px 3px rgba(25, 128, 57, 0.1);
+}
+
+.med-table tbody tr.category-header:hover {
+    background: linear-gradient(135deg, #dcf2e0 0%, #e8f5e9 100%);
+    box-shadow: 0 2px 5px rgba(25, 128, 57, 0.15);
+}
+
+.med-table tbody tr.category-header td {
+    padding: 10px 8px;
+    font-size: 14px;
+    border-bottom: 2px solid #198039;
+    text-align: left;
+}
+
+.med-table td {
+    padding: 3px 8px;
+    vertical-align: middle;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+    background-clip: padding-box;
+}
+
+.med-table td.stt {
+    text-align: center;
+    color: #999;
+    font-weight: 500;
+}
+
+.med-table input[type="text"],
+.med-table input[type="number"],
+.med-table textarea,
+.med-table select {
+    width: calc(100% - 6px);
+    padding: 6px 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    text-align: center;
+    background: #ffffff;
+    margin: 2px 3px;
+    transition: all 0.2s ease;
+    min-height: 45px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.med-table input[type="text"][name^="medName_"],
+.med-table textarea[name^="medName_"] {
+    text-align: left;
+    white-space: pre-line;
+    line-height: 1.4;
+    font-size: 15px;
+    vertical-align: middle;
+    padding: 6px 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.med-table textarea[name^="medName_"] {
+    min-height: 45px;
+    height: auto;
+}
+
+/* Đảm bảo các cột số căn giữa */
+.med-table input[name^="medUnit_"],
+.med-table input[name^="medCoSo_"],
+.med-table input[name^="medSlTong_"],
+.med-table input[name^="medCaSang_"],
+.med-table input[name^="medCaDem_"],
+.med-table input[name^="medCaChieu_"],
+.med-table input[name^="medCaToi_"] {
+    text-align: center;
+}
+
+/* Màu nền cho các cột - mặc định trắng, có giá trị thì sáng lên */
+.med-table input[name^="medCoSo_"] {
+    background: #ffffff;
+}
+
+.med-table input[name^="medUnit_"] {
+    background: #ffffff;
+}
+
+.med-table input[name^="medSlTong_"] {
+    background: #ffffff;
+}
+
+.med-table input[name^="medCaSang_"]:not(:disabled) {
+    background: #ffffff;
+}
+
+.med-table input[name^="medCaChieu_"]:not(:disabled) {
+    background: #ffffff;
+}
+
+.med-table input[name^="medCaDem_"]:not(:disabled),
+.med-table input[name^="medCaToi_"]:not(:disabled) {
+    background: #ffffff;
+}
+
+/* Khi có giá trị thì sáng lên */
+.med-table input[name^="medCaSang_"]:not(:disabled).has-value,
+.med-table input[name^="medCaSang_"]:not(:disabled):focus {
+    background: #fff9c4;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px rgba(255, 249, 196, 0.5);
+}
+
+.med-table input[name^="medCaChieu_"]:not(:disabled).has-value,
+.med-table input[name^="medCaChieu_"]:not(:disabled):focus {
+    background: #ffe0b2;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px rgba(255, 224, 178, 0.5);
+}
+
+.med-table input[name^="medCaDem_"]:not(:disabled).has-value,
+.med-table input[name^="medCaDem_"]:not(:disabled):focus,
+.med-table input[name^="medCaToi_"]:not(:disabled).has-value,
+.med-table input[name^="medCaToi_"]:not(:disabled):focus {
+    background: #e1f5fe;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px rgba(225, 245, 254, 0.5);
+}
+
+.med-table input[type="text"]:focus,
+.med-table input[type="number"]:focus,
+.med-table select:focus {
+    outline: none;
+    border-color: #198039;
+    box-shadow: 0 0 0 2px rgba(25, 128, 57, 0.1);
+}
+
+.med-table select {
+    cursor: pointer;
+    background-color: white;
+}
+
+.remove-medication {
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.remove-medication:hover {
+    background: #ff3838;
+}
+
+/* Buttons */
+.btn {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    color: white;
+    font-size: 12px;
+    padding: 11px 20px;
+    font-weight: 700;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+.btn-success:active {
+    transform: scale(0.98);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #FFA726 0%, #FB8C00 100%);
+    color: white;
+}
+
+.btn-warning:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #198039;
+    border: 2px solid #198039;
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: none;
+}
+
+.btn-danger:active {
+    transform: scale(0.98);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+    border: none;
+}
+
+.btn-info:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border: none;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Form actions */
+.form-actions {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* History section */
+#historySection {
+    padding: 20px;
+}
+
+.history-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #198039;
+}
+
+.history-item h3 {
+    color: #198039;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.history-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.history-item strong {
+    color: #333;
+}
+
+/* Medication select */
+.med-custom {
+    margin-top: 10px;
+}
+
+select.med-select {
+    max-width: 100%;
+}
+
+optgroup {
+    font-weight: bold;
+    color: #198039;
+}
+
+/* Loading Popup */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.loading-content {
+    background: white;
+    padding: 50px 60px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.spinner-circle {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #22a045 0%, #198039 100%);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.spinner-circle:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.spinner-circle:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.loading-text {
+    font-size: 24px;
+    color: #198039;
+    margin: 0;
+    font-weight: 700;
+}
+
+.loading-text.success {
+    color: #22a045;
+}
+
+.loading-text.success::before {
+    content: '✅ ';
+}
+
+/* Utility classes */
+/* Responsive */
+/* iPad Gen 10 (10.9 inch) - 820px viewport */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 95%;
+        border-radius: 18px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .form-section h2 {
+        font-size: 18px;
+    }
+
+    .form-group label {
+        font-size: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .menu-header h1 {
+        font-size: 28px;
+    }
+
+    .menu-item {
+        padding: 14px 18px;
+    }
+
+    .menu-title {
+        font-size: 15px;
+    }
+
+    .submenu-item {
+        padding: 12px 16px;
+    }
+
+    .submenu-title {
+        font-size: 15px;
+    }
+
+    .med-table {
+        font-size: 15px;
+    }
+
+    .med-table th {
+        font-size: 16px;
+        padding: 12px 6px;
+    }
+
+    .med-table td {
+        padding: 8px 4px;
+    }
+
+    .med-table input[type="text"],
+    .med-table input[type="number"],
+    .med-table textarea {
+        font-size: 14px;
+        padding: 6px 4px;
+    }
+
+    .btn {
+        font-size: 17px;
+        padding: 14px 24px;
+    }
+
+    .btn-primary {
+        font-size: 13px;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-container {
+        padding: 0 10px;
+    }
+
+    .menu-item {
+        padding: 16px 20px;
+    }
+
+    .menu-title {
+        font-size: 15px;
+    }
+
+    .submenu-item {
+        padding: 14px 20px;
+        margin-left: 15px;
+    }
+
+    .submenu-title {
+        font-size: 15px;
+    }
+
+    .menu-header h1 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        border-radius: 12px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    .form-section {
+        padding: 12px;
+    }
+
+    #mainMenu {
+        padding: 15px 10px;
+    }
+
+    .menu-header h1 {
+        font-size: 20px;
+    }
+
+    .menu-header .subtitle {
+        font-size: 11px;
+    }
+
+    .menu-item {
+        padding: 10px 12px;
+        margin-bottom: 6px;
+    }
+
+    .menu-icon {
+        font-size: 18px;
+        min-width: 28px;
+    }
+
+    .menu-title {
+        font-size: 13px;
+    }
+
+    .submenu-item {
+        padding: 8px 12px;
+        margin-left: 12px;
+    }
+
+    .submenu-icon {
+        font-size: 16px;
+        min-width: 24px;
+    }
+
+    .submenu-title {
+        font-size: 13px;
+    }
+
+    .submenu-desc {
+        font-size: 9px;
+    }
+
+    /* Tối ưu bảng cho mobile */
+    .med-table {
+        font-size: 10px;
+    }
+
+    .med-table th {
+        padding: 8px 4px;
+        font-size: 11px;
+    }
+
+    .med-table td {
+        padding: 6px 3px;
+    }
+
+    .med-table input[type="text"],
+    .med-table input[type="number"],
+    .med-table textarea,
+    .med-table select {
+        padding: 5px 2px;
+        font-size: 10px;
+    }
+
+    .med-table textarea[name^="medName_"] {
+        font-size: 11px;
+        line-height: 1.3;
+        min-height: 38px;
+    }
+
+    .med-table tbody tr.category-header td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Popup overlay */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-overlay.show {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: popupSlideIn 0.3s ease-out;
+}
+
+@keyframes popupSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup-content h2 {
+    color: #198039;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.popup-content p {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.6;
+    white-space: pre-line;
+    text-align: left;
+}
+
+.popup-content .btn {
+    margin-top: 10px;
+    min-width: 120px;
+}
+.popup-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}

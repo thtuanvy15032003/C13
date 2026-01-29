@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bàn Giao Thuốc - Giao Ca</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Màn hình menu chính -->
+        <div id="mainMenu">
+            <div class="menu-header">
+                <h1>HỆ THỐNG QUẢN LÝ<br>KHOA CẤP CỨU (C1-3a)</h1>
+            </div>
+            
+            <div class="menu-container">
+                <!-- CHẤM CÔNG -->
+                <div class="menu-item" data-module="chamcong">
+                    <div class="menu-icon">⏰</div>
+                    <div class="menu-title">CHẤM CÔNG</div>
+                </div>
+
+                <!-- QUẢN LÝ THUỐC -->
+                <div class="menu-item expandable">
+                    <div class="menu-icon">💊</div>
+                    <div class="menu-title">QUẢN LÝ THUỐC</div>
+                    <div class="menu-arrow">▼</div>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" data-module="thuoc-baohiem">
+                        <div class="submenu-icon">1</div>
+                        <div class="submenu-title">THUỐC BẢO HIỂM</div>
+                    </div>
+                    <div class="submenu-item" data-module="thuoc-dichvu">
+                        <div class="submenu-icon">2</div>
+                        <div class="submenu-title">THUỐC DỊCH VỤ</div>
+                    </div>
+                </div>
+
+                <!-- QUẢN LÝ TRANG THIẾT BỊ - VẬT TƯ -->
+                <div class="menu-item expandable">
+                    <div class="menu-icon">🔧</div>
+                    <div class="menu-title">QUẢN LÝ TRANG THIẾT BỊ - VẬT TƯ</div>
+                    <div class="menu-arrow">▼</div>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" data-module="giaonhan-ttb">
+                        <div class="submenu-icon">1</div>
+                        <div class="submenu-title">GIAO NHẬN TRANG THIẾT BỊ - VẬT TƯ</div>
+                    </div>
+                    <div class="submenu-item" data-module="suachua-maymoc">
+                        <div class="submenu-icon">2</div>
+                        <div class="submenu-title">SỬA CHỮA MÁY MÓC</div>
+                    </div>
+                    <div class="submenu-item" data-module="phieumuon-ttb">
+                        <div class="submenu-icon">3</div>
+                        <div class="submenu-title">PHIẾU MƯỢN TRANG THIẾT BỊ</div>
+                    </div>
+                    <div class="submenu-item" data-module="hap-guidungcu">
+                        <div class="submenu-icon">4</div>
+                        <div class="submenu-title">HẤP – GỬI DỤNG CỤ (C12)</div>
+                    </div>
+                </div>
+
+                <!-- HÀNH CHÍNH -->
+                <div class="menu-item expandable">
+                    <div class="menu-icon">📁</div>
+                    <div class="menu-title">HÀNH CHÍNH</div>
+                    <div class="menu-arrow">▼</div>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" data-module="suco-ykhoa">
+                        <div class="submenu-icon">1</div>
+                        <div class="submenu-title">SỰ CỐ Y KHOA</div>
+                    </div>
+                    <div class="submenu-item" data-module="thanhcong-thatbai">
+                        <div class="submenu-icon">2</div>
+                        <div class="submenu-title">THÀNH CÔNG – THẤT BẠI</div>
+                    </div>
+                    <div class="submenu-item" data-module="baodong-do">
+                        <div class="submenu-icon">3</div>
+                        <div class="submenu-title">BÁO ĐỘNG ĐỎ</div>
+                    </div>
+                    <div class="submenu-item" data-module="binh-benhan">
+                        <div class="submenu-icon">4</div>
+                        <div class="submenu-title">BÌNH BỆNH ÁN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form chính (ẩn ban đầu) -->
+        <div id="mainForm" class="hidden">
+            <header>
+                <button type="button" class="btn-save-top" id="saveTopBtn">✔ Lưu</button>
+                <h1 id="formTitle">TỦ THUỐC BẢO HIỂM C1-3a</h1>
+                <p class="subtitle" id="formSubtitle"></p>
+                <button type="button" class="btn-back" id="backToSelection">← Quay lại menu chính</button>
+            </header>
+
+        <form id="handoverForm">
+            <!-- Thông tin ca trực -->
+            <section class="form-section">
+                <h2>Thông tin ca trực</h2>
+                
+                <div class="form-group" id="shiftCountGroup">
+                    <label for="shiftCount">Số ca:</label>
+                    <select id="shiftCount" name="shiftCount" required>
+                        <option value="2">2 ca (Ngày, Đêm)</option>
+                        <option value="3">3 ca (Ngày, Chiều, Tối)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="shiftDate">Ngày:</label>
+                    <input type="date" id="shiftDate" name="shiftDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="shiftType">Ca trực:</label>
+                    <select id="shiftType" name="shiftType" required>
+                        <option value="">-- Chọn ca --</option>
+                        <option value="morning">Ca ngày</option>
+                        <option value="afternoon" class="shift-3-only" style="display: none;">Ca chiều</option>
+                        <option value="night">Ca đêm</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="handoverPerson">Người bàn giao:</label>
+                    <select id="handoverPerson" name="handoverPerson" required>
+                        <option value="">-- Chọn người bàn giao --</option>
+                        <option value="Bùi Thị Anh Thư">Bùi Thị Anh Thư</option>
+                        <option value="Chu Anh Văn">Chu Anh Văn</option>
+                        <option value="Đậu Thị Yến">Đậu Thị Yến</option>
+                        <option value="Đoàn Văn Khuê">Đoàn Văn Khuê</option>
+                        <option value="Hoàng Khắc Đăng">Hoàng Khắc Đăng</option>
+                        <option value="Hoàng Trung Hiếu">Hoàng Trung Hiếu</option>
+                        <option value="Huỳnh Văn Chính">Huỳnh Văn Chính</option>
+                        <option value="Kiều Công Dân">Kiều Công Dân</option>
+                        <option value="Lê Thị Cẩm Dịu">Lê Thị Cẩm Dịu</option>
+                        <option value="Lê Thụy Hải Yến (HV)">Lê Thụy Hải Yến (HV)</option>
+                        <option value="Lê Trường Vũ">Lê Trường Vũ</option>
+                        <option value="Lý Nghĩa Sơn">Lý Nghĩa Sơn</option>
+                        <option value="Mai Anh Đô">Mai Anh Đô</option>
+                        <option value="Ngô Văn Hùng">Ngô Văn Hùng</option>
+                        <option value="Ngô Văn Phương">Ngô Văn Phương</option>
+                        <option value="Ngô Xuân Tùng">Ngô Xuân Tùng</option>
+                        <option value="Nguyễn Gia Long">Nguyễn Gia Long</option>
+                        <option value="Nguyễn Hải Nam">Nguyễn Hải Nam</option>
+                        <option value="Nguyễn Hồ Kim Ngọc">Nguyễn Hồ Kim Ngọc</option>
+                        <option value="Nguyễn Lê Yến Nhi (HV)">Nguyễn Lê Yến Nhi (HV)</option>
+                        <option value="Nguyễn Phan Hiền Trân">Nguyễn Phan Hiền Trân</option>
+                        <option value="Nguyễn Thị Lan Anh">Nguyễn Thị Lan Anh</option>
+                        <option value="Nguyễn Thị Nhuận">Nguyễn Thị Nhuận</option>
+                        <option value="Nguyễn Thị Thu">Nguyễn Thị Thu</option>
+                        <option value="Phan Thị Bích Trâm">Phan Thị Bích Trâm</option>
+                        <option value="Trang Yến Vy (HV)">Trang Yến Vy (HV)</option>
+                        <option value="Trần Đăng Hào">Trần Đăng Hào</option>
+                        <option value="Trần Như Quỳnh">Trần Như Quỳnh</option>
+                        <option value="Trần Thị Bích Vân">Trần Thị Bích Vân</option>
+                        <option value="Trần Thị Thu Hòa">Trần Thị Thu Hòa</option>
+                        <option value="Trịnh Thiên Thanh">Trịnh Thiên Thanh</option>
+                        <option value="Trịnh Thị Cẩm Hằng">Trịnh Thị Cẩm Hằng</option>
+                        <option value="Trương Huỳnh Tuấn Vỹ (HV)">Trương Huỳnh Tuấn Vỹ (HV)</option>
+                        <option value="Võ Thị Anh Thư (HV)">Võ Thị Anh Thư (HV)</option>
+                        <option value="Võ Thị Kiều Linh">Võ Thị Kiều Linh</option>
+                        <option value="Võ Văn Hiếu">Võ Văn Hiếu</option>
+                        <option value="Võ Văn Tuấn">Võ Văn Tuấn</option>
+                        <option value="Vũ Trung Kiên">Vũ Trung Kiên</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="receivePerson">Người nhận bàn giao:</label>
+                    <select id="receivePerson" name="receivePerson" required>
+                        <option value="">-- Chọn người nhận --</option>
+                        <option value="Bùi Thị Anh Thư">Bùi Thị Anh Thư</option>
+                        <option value="Chu Anh Văn">Chu Anh Văn</option>
+                        <option value="Đậu Thị Yến">Đậu Thị Yến</option>
+                        <option value="Đoàn Văn Khuê">Đoàn Văn Khuê</option>
+                        <option value="Hoàng Khắc Đăng">Hoàng Khắc Đăng</option>
+                        <option value="Hoàng Trung Hiếu">Hoàng Trung Hiếu</option>
+                        <option value="Huỳnh Văn Chính">Huỳnh Văn Chính</option>
+                        <option value="Kiều Công Dân">Kiều Công Dân</option>
+                        <option value="Lê Thị Cẩm Dịu">Lê Thị Cẩm Dịu</option>
+                        <option value="Lê Thụy Hải Yến (HV)">Lê Thụy Hải Yến (HV)</option>
+                        <option value="Lê Trường Vũ">Lê Trường Vũ</option>
+                        <option value="Lý Nghĩa Sơn">Lý Nghĩa Sơn</option>
+                        <option value="Mai Anh Đô">Mai Anh Đô</option>
+                        <option value="Ngô Văn Hùng">Ngô Văn Hùng</option>
+                        <option value="Ngô Văn Phương">Ngô Văn Phương</option>
+                        <option value="Ngô Xuân Tùng">Ngô Xuân Tùng</option>
+                        <option value="Nguyễn Gia Long">Nguyễn Gia Long</option>
+                        <option value="Nguyễn Hải Nam">Nguyễn Hải Nam</option>
+                        <option value="Nguyễn Hồ Kim Ngọc">Nguyễn Hồ Kim Ngọc</option>
+                        <option value="Nguyễn Lê Yến Nhi (HV)">Nguyễn Lê Yến Nhi (HV)</option>
+                        <option value="Nguyễn Phan Hiền Trân">Nguyễn Phan Hiền Trân</option>
+                        <option value="Nguyễn Thị Lan Anh">Nguyễn Thị Lan Anh</option>
+                        <option value="Nguyễn Thị Nhuận">Nguyễn Thị Nhuận</option>
+                        <option value="Nguyễn Thị Thu">Nguyễn Thị Thu</option>
+                        <option value="Phan Thị Bích Trâm">Phan Thị Bích Trâm</option>
+                        <option value="Trang Yến Vy (HV)">Trang Yến Vy (HV)</option>
+                        <option value="Trần Đăng Hào">Trần Đăng Hào</option>
+                        <option value="Trần Như Quỳnh">Trần Như Quỳnh</option>
+                        <option value="Trần Thị Bích Vân">Trần Thị Bích Vân</option>
+                        <option value="Trần Thị Thu Hòa">Trần Thị Thu Hòa</option>
+                        <option value="Trịnh Thiên Thanh">Trịnh Thiên Thanh</option>
+                        <option value="Trịnh Thị Cẩm Hằng">Trịnh Thị Cẩm Hằng</option>
+                        <option value="Trương Huỳnh Tuấn Vỹ (HV)">Trương Huỳnh Tuấn Vỹ (HV)</option>
+                        <option value="Võ Thị Anh Thư (HV)">Võ Thị Anh Thư (HV)</option>
+                        <option value="Võ Thị Kiều Linh">Võ Thị Kiều Linh</option>
+                        <option value="Võ Văn Hiếu">Võ Văn Hiếu</option>
+                        <option value="Võ Văn Tuấn">Võ Văn Tuấn</option>
+                        <option value="Vũ Trung Kiên">Vũ Trung Kiên</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Danh sách thuốc -->
+            <section class="form-section" id="ccblSection">
+                <h2>DANH SÁCH THUỐC BẢO HIỂM Y TẾ</h2>
+                <div class="table-wrapper">
+                    <table id="medicationTable" class="med-table">
+                        <thead id="medicationTableHead">
+                            <tr>
+                                <th style="width: 60px;">Cơ số CCBL</th>
+                                <th style="width: 180px;">BIỆT DƯỢC</th>
+                                <th style="width: 60px;">ĐVT</th>
+                                <th style="width: 70px;">SL hiện có</th>
+                                <th style="width: 80px;">ĐÊM (ngày trước)</th>
+                                <th style="width: 70px;">NGÀY</th>
+                                <th style="width: 70px;">ĐÊM</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicationList">
+                            <!-- Các hàng thuốc sẽ được thêm động ở đây -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Ghi chú -->
+            <section class="form-section" id="noteSection">
+                <h2>Ghi chú</h2>
+                <div class="form-group">
+                    <label for="notes">Nội dung ghi chú:</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Nhập ghi chú (nếu có)"></textarea>
+                </div>
+            </section>
+
+            <!-- Nút hành động -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" id="deliverMedicationBtn">
+                    💊 Cấp thuốc
+                </button>
+                <button type="button" class="btn btn-danger" id="clearDataBtn">
+                    🗑️ Xóa dữ liệu
+                </button>
+                <button type="button" class="btn btn-info" id="refreshDataBtn">
+                    🔄 Làm tươi
+                </button>
+                <button type="button" class="btn btn-warning" id="editBtn">
+                    ✏️ Chỉnh sửa
+                </button>
+                <button type="button" class="btn btn-secondary" id="contactAdminBtn">
+                    📞 Liên hệ quản trị viên
+                </button>
+            </div>
+        </form>
+        </div>
+
+
+    </div>
+
+    <!-- Popup loading -->
+    <div id="loadingPopup" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+            </div>
+            <h2 id="loadingText" class="loading-text">Đang lưu...</h2>
+        </div>
+    </div>
+
+    <!-- Popup thông báo -->
+    <div id="notificationPopup" class="popup-overlay">
+        <div class="popup-content">
+            <h2 id="popupTitle">Thông báo</h2>
+            <p id="popupMessage"></p>
+            <button id="popupOkBtn" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <!-- Popup cấp thuốc -->
+    <div id="deliverMedicationPopup" class="popup-overlay" style="display: none;">
+        <div class="popup-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto;">
+            <h2>💊 CẤP THUỐC</h2>
+            <form id="deliverMedicationForm">
+                <div class="form-group">
+                    <label for="deliverDate">Ngày cấp thuốc:</label>
+                    <input type="date" id="deliverDate" name="deliverDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliverShiftType">Ca trực:</label>
+                    <select id="deliverShiftType" name="deliverShiftType" required>
+                        <option value="">-- Chọn ca trực --</option>
+                        <option value="morning">Sáng</option>
+                        <option value="night">Đêm</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="deliverHandoverPerson">Người giao (Dược):</label>
+                    <input type="text" id="deliverHandoverPerson" name="deliverHandoverPerson" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliverReceivePerson">Người nhận:</label>
+                    <input type="text" id="deliverReceivePerson" name="deliverReceivePerson" required>
+                </div>
+                
+                <h3>Danh sách thuốc cấp</h3>
+                <div class="table-wrapper">
+                    <table class="med-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 200px;">BIỆT DƯỢC</th>
+                                <th style="width: 60px;">ĐVT</th>
+                                <th style="width: 100px;">Số lượng cấp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deliverMedicationList">
+                            <!-- Các hàng thuốc sẽ được thêm động -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="popup-actions">
+                    <button type="submit" class="btn btn-primary">✔ Lưu cấp thuốc</button>
+                    <button type="button" class="btn btn-secondary" id="cancelDeliverBtn">❌ Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
